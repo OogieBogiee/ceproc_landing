@@ -1,5 +1,8 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import logo from '../../assets/images/logo.png';
+import banner from '../../assets/images/img.jpg';
 ---
 
 <BaseLayout
@@ -7,15 +10,31 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   description="Asociación CEPROC: promovemos el desarrollo integral sostenible y la acción comunitaria en Bolivia."
   noindex
 >
-  <main class="container py-5">
-    <div class="row justify-content-center">
-      <div class="col-lg-8">
-        <h1 class="mb-3">CEPROC</h1>
-        <p class="lead mb-0">
-          Sitio en construcción. Próximamente encontrarás aquí la información institucional,
-          nuestras áreas de trabajo y los proyectos que desarrollamos en Bolivia.
-        </p>
-      </div>
+  <header class="bg-white">
+    <div class="container py-3 d-flex justify-content-center justify-content-md-start">
+      <Image src={logo} alt="Logo de CEPROC" height={72} loading="eager" />
     </div>
+  </header>
+
+  <main>
+    <section class="container py-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 text-center">
+          <h1 class="mb-3">CEPROC</h1>
+          <p class="lead mb-0">
+            Sitio en construcción. Próximamente encontrarás aquí la información institucional,
+            nuestras áreas de trabajo y los proyectos que desarrollamos en Bolivia.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <Image
+      src={banner}
+      alt="Paisaje de campos verdes entre montañas"
+      widths={[480, 960, 1280]}
+      sizes="100vw"
+      class="w-100"
+    />
   </main>
 </BaseLayout>
