@@ -1,0 +1,94 @@
+---
+import { getContent, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const content = getContent(lang);
+const { footer } = content;
+---
+
+<footer class="footer text-center" id="contacto">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="titulo_secundario">
+          <h2 class="display-6 small-header">{footer.contactHeading}</h2>
+          <p class="display-6 small-header2 mb-0">{footer.organization}</p>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="info_izquierda">
+          <h3 class="info_titulo">{footer.contactTitle}</h3>
+          {footer.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <form id="contact-form" class="text-start" aria-describedby="contact-form-notice">
+          <div class="mb-3">
+            <label class="visually-hidden" for="contact-name">{footer.form.nameLabel}</label>
+            <input
+              class="form-control"
+              id="contact-name"
+              name="name"
+              type="text"
+              placeholder={footer.form.nameLabel}
+              autocomplete="name"
+              disabled
+            />
+          </div>
+          <div class="mb-3">
+            <label class="visually-hidden" for="contact-email">{footer.form.emailLabel}</label>
+            <input
+              class="form-control"
+              id="contact-email"
+              name="email"
+              type="email"
+              placeholder={footer.form.emailLabel}
+              autocomplete="email"
+              disabled
+            />
+          </div>
+          <div class="mb-3">
+            <label class="visually-hidden" for="contact-message">{footer.form.messageLabel}</label>
+            <textarea
+              class="form-control"
+              id="contact-message"
+              name="message"
+              rows="8"
+              placeholder={footer.form.messageLabel}
+              disabled
+            ></textarea>
+          </div>
+          <div class="form-group text-start">
+            <button class="btn btn-secondary" type="submit" disabled>{footer.form.submit}</button>
+          </div>
+          <p id="contact-form-notice" class="text-white-50 small mt-3 mb-0">
+            {footer.form.notice}
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="copyright py-4 text-center text-secondary">
+  <div class="container">
+    {footer.social.map((item) => (
+      <a
+        class="btn btn-social mx-1"
+        href={item.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={item.label}
+      >
+        <i class={`fa-brands fa-fw ${item.icon}`} aria-hidden="true"></i>
+      </a>
+    ))}
+    <div class="my-4">
+      <small>{footer.copyright}</small>
+    </div>
+  </div>
+</div>

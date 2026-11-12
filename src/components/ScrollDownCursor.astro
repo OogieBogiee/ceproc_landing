@@ -1,0 +1,17 @@
+---
+import { getContent, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const content = getContent(lang);
+---
+
+<a
+  href="#acerca"
+  id="scroll-down-cursor"
+  class="scroll-down-cursor"
+  aria-label={content.widgets.scrollDownLabel}
+></a>
