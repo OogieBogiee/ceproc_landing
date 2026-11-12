@@ -9,6 +9,7 @@ import '@fontsource/lato/latin-700.css';
 import '@fontsource/lato/latin-400-italic.css';
 import '@fontsource/lato/latin-700-italic.css';
 import '../styles/global.css';
+import '../styles/legacy.css';
 
 interface Props {
   title: string;
@@ -31,6 +32,7 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <title>{title}</title>
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex" />}
