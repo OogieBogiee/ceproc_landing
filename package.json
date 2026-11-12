@@ -22,5 +22,8 @@
     "aos": "^2.3.4",
     "astro": "^7.4.11",
     "bootstrap": "^5.3.9"
+  },
+  "devDependencies": {
+    "@types/aos": "^3.0.8"
   }
 }

@@ -1,0 +1,40 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import { getContent, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+  category: string;
+  alt: string;
+  image?: ImageMetadata | null;
+  hidden?: boolean;
+  animation?: 'fade-right' | 'fade-left';
+}
+
+const { lang, category, alt, image, hidden = false, animation } = Astro.props;
+const content = getContent(lang);
+const { portfolio } = content;
+---
+
+<div class="box-img col" data-category={category} hidden={hidden}>
+  {image ? (
+    <>
+      <Image
+        src={image}
+        alt={alt}
+        widths={[480, 720, 960]}
+        sizes="(max-width: 767px) 100vw, 52vw"
+        class="img-fluid"
+        data-aos={animation}
+        data-aos-duration="1900"
+        loading="lazy"
+      />
+      <div class="overlay">
+        <a href="#contacto" class="btn btn-secondary">{portfolio.moreLabel}</a>
+      </div>
+    </>
+  ) : (
+    <span class="texto">{portfolio.upcoming}</span>
+  )}
+</div>
