@@ -1,4 +1,6 @@
+import 'bootstrap/js/dist/carousel';
 import 'bootstrap/js/dist/collapse';
+import AOS from 'aos';
 import ScrollSpy from 'bootstrap/js/dist/scrollspy';
 
 const onReady = (callback: () => void) => {
@@ -10,6 +12,12 @@ const onReady = (callback: () => void) => {
 };
 
 onReady(() => {
+  AOS.init({
+    offset: -70,
+    once: true,
+    disable: window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+  });
+
   const navbar = document.querySelector<HTMLElement>('#mainNav');
   const brand = document.querySelector<HTMLElement>('.navbar-brand');
   const hero = document.querySelector<HTMLElement>('#inicio');

@@ -2,6 +2,10 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Hero from '../../components/Hero.astro';
+import About from '../../components/About.astro';
+import Disciplines from '../../components/Disciplines.astro';
+import Scope from '../../components/Scope.astro';
+import Portfolio from '../../components/Portfolio.astro';
 import Footer from '../../components/Footer.astro';
 import Preloader from '../../components/Preloader.astro';
 import WhatsAppWidget from '../../components/WhatsAppWidget.astro';
@@ -13,12 +17,7 @@ const lang: Lang = 'es';
 const content = getContent(lang);
 ---
 
-<BaseLayout
-  title={content.meta.title}
-  description={content.meta.description}
-  lang={lang}
-  noindex
->
+<BaseLayout title={content.meta.title} description={content.meta.description} lang={lang} noindex>
   <Preloader lang={lang} />
   <ScrollDownCursor lang={lang} />
   <ScrollTopButton lang={lang} />
@@ -26,18 +25,12 @@ const content = getContent(lang);
   <Navbar lang={lang} />
   <main>
     <Hero lang={lang} />
-    <section id="acerca" class="py-5">
-      <div class="container py-5 text-center">
-        <h2 class="text-uppercase">{content.sections.about.title}</h2>
-        <p class="text-muted mb-0">{content.sections.about.placeholder}</p>
-      </div>
+    <section id="acerca">
+      <About lang={lang} />
+      <Disciplines lang={lang} />
+      <Scope lang={lang} />
     </section>
-    <section id="portafolio" class="py-5 bg-light">
-      <div class="container py-5 text-center">
-        <h2 class="text-uppercase">{content.sections.portfolio.title}</h2>
-        <p class="text-muted mb-0">{content.sections.portfolio.placeholder}</p>
-      </div>
-    </section>
+    <Portfolio lang={lang} />
   </main>
   <Footer lang={lang} />
 </BaseLayout>

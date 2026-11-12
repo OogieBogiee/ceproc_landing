@@ -1,0 +1,72 @@
+---
+import projectOne from '../assets/images/Imagen1.png';
+import projectTwo from '../assets/images/Imagen2.png';
+import projectThree from '../assets/images/Imagen3.png';
+import PortfolioItem from './PortfolioItem.astro';
+import { getContent, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const content = getContent(lang);
+const { portfolio } = content;
+const images = [projectOne, projectTwo, null, projectThree, null, null];
+const firstRow = portfolio.items.slice(0, 2);
+const remaining = portfolio.items.slice(2);
+---
+
+<section class="portafolio" id="portafolio">
+  <div class="container">
+    <h2 data-aos="zoom-in-up" data-aos-duration="1000" class="portafolio-heading text-uppercase mb-0">
+      {portfolio.title}
+    </h2>
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-xl-7">
+        <h3 data-aos="zoom-in-up" data-aos-duration="1100" class="portafolio-text">{portfolio.intro}</h3>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div data-aos="flip-left" data-aos-duration="1900" class="menu">
+        <ul>
+          {portfolio.filters.map((filter, index) => (
+            <li class:list={[{ active: index === 0 }]}>
+              <a
+                href="#portafolio"
+                class="btn-menu"
+                data-filter={filter.value}
+                aria-label={filter.label}
+                title={filter.label}
+              >
+                <i class={`fa-solid ${filter.icon}`} aria-hidden="true"></i>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+    <div class="row justify-content-center mt-4">
+      {firstRow.map((item, index) => (
+        <PortfolioItem
+          lang={lang}
+          category={item.category}
+          alt={item.alt}
+          image={images[index]}
+          animation={index === 0 ? 'fade-right' : 'fade-left'}
+        />
+      ))}
+    </div>
+    {remaining.map((item, index) => (
+      <div class="row justify-content-center">
+        <PortfolioItem
+          lang={lang}
+          category={item.category}
+          alt={item.alt}
+          image={images[index + 2]}
+          hidden={item.category !== '1'}
+        />
+      </div>
+    ))}
+  </div>
+</section>

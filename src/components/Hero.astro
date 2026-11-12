@@ -1,6 +1,8 @@
 ---
 import { Image } from 'astro:assets';
-import banner from '../assets/images/img.jpg';
+import slideOne from '../assets/images/img.jpg';
+import slideTwo from '../assets/images/img2.jpg';
+import slideThree from '../assets/images/img3.jpg';
 import { getContent, type Lang } from '../i18n';
 
 interface Props {
@@ -9,92 +11,60 @@ interface Props {
 
 const { lang } = Astro.props;
 const content = getContent(lang);
+const slides = [slideOne, slideTwo, slideThree];
 ---
 
-<header id="inicio" class="hero">
-  <div class="hero-media">
-    <Image
-      src={banner}
-      alt={content.hero.imageAlt}
-      widths={[480, 960, 1280]}
-      sizes="100vw"
-      loading="eager"
-    />
-  </div>
-  <div class="hero-overlay" aria-hidden="true"></div>
-  <div class="hero-content">
-    <div class="container">
-      <h1>{content.hero.title}</h1>
-      <p>{content.hero.text}</p>
-      <a href="#contacto" class="btn btn-contact-principal hero-cta">{content.hero.cta}</a>
+<header id="inicio">
+  <div id="heroCarousel" class="carousel carousel-dark slide carousel-top" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      {slides.map((_, index) => (
+        <button
+          type="button"
+          data-bs-target="#heroCarousel"
+          data-bs-slide-to={index}
+          class:list={[{ active: index === 0 }]}
+          aria-current={index === 0 ? 'true' : undefined}
+          aria-label={`${content.hero.slideLabel} ${index + 1}`}
+        />
+      ))}
+    </div>
+    <div class="carousel-inner">
+      {slides.map((slide, index) => (
+        <div class:list={['carousel-item', { active: index === 0 }]} data-bs-interval="8000">
+          <Image
+            src={slide}
+            alt={content.hero.slides[index].alt}
+            widths={[640, 960, 1280]}
+            sizes="100vw"
+            class="d-block w-100"
+            loading={index === 0 ? 'eager' : 'lazy'}
+            fetchpriority={index === 0 ? 'high' : 'auto'}
+          />
+        </div>
+      ))}
+    </div>
+    <div class="image-caption">
+      <div class="caption-medium">
+        <span class="ml12">{content.hero.captions.intro}</span>
+      </div>
+      <div class="caption-large">
+        <span class="ml12">{content.hero.captions.title}</span>
+      </div>
+      <div id="typing-container" class="caption-small">
+        <span id="line1">{content.hero.captions.line1}</span>
+        <p>
+          <span id="line2">{content.hero.captions.line2}</span>
+        </p>
+      </div>
+      <a href="#contacto" class="btn btn-contact-principal">{content.hero.cta}</a>
     </div>
   </div>
 </header>
 
 <style>
-  .hero {
-    position: relative;
-    display: flex;
-    align-items: center;
-    min-height: 600px;
-    overflow: hidden;
-  }
-
-  .hero-media {
-    position: absolute;
-    inset: 0;
-  }
-
-  .hero-media :global(img) {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .hero-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg, rgba(47, 58, 41, 0.72) 0%, rgba(47, 58, 41, 0.35) 55%, rgba(47, 58, 41, 0.12) 100%);
-  }
-
-  .hero-content {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    padding: 7rem 0 4rem;
-    color: #fff;
-    text-align: center;
-  }
-
-  .hero-content :global(.container) {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
-
-  .hero-content h1 {
-    margin-bottom: 1rem;
-    font-size: clamp(3rem, 8vw, 5rem);
-    letter-spacing: 0.08em;
-  }
-
-  .hero-content p {
-    max-width: 42rem;
-    margin: 0 auto 2rem;
-    font-size: clamp(1rem, 2vw, 1.25rem);
-  }
-
-  .hero-content .hero-cta {
-    position: static;
-    transform: none;
-  }
-
-  @media (max-width: 767.98px) {
-    .hero {
-      min-height: 720px;
-    }
-
-    .hero-content {
-      padding-top: 8rem;
+  @media (min-width: 1200px) {
+    .carousel-item :global(img) {
+      height: auto;
     }
   }
 </style>
