@@ -1,0 +1,36 @@
+:root {
+  --ceproc-green-dark: #2f3a29;
+  --ceproc-green: #485342;
+  --ceproc-green-mid: #59744a;
+  --ceproc-green-light: #6a885a;
+  --ceproc-sage: #c7cec9;
+  --ceproc-sage-light: #dbe2dd;
+  --ceproc-white: #ffffff;
+  --bs-font-sans-serif: "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+html {
+  scroll-padding-top: calc(4.5rem - 1px);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: var(--bs-font-sans-serif);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Montserrat", var(--bs-font-sans-serif);
+  font-weight: 700;
+  line-height: 1.2;
+}

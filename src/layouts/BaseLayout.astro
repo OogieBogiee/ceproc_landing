@@ -1,0 +1,41 @@
+---
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import 'aos/dist/aos.css';
+import '@fontsource/montserrat/latin-400.css';
+import '@fontsource/montserrat/latin-700.css';
+import '@fontsource/lato/latin-400.css';
+import '@fontsource/lato/latin-700.css';
+import '@fontsource/lato/latin-400-italic.css';
+import '@fontsource/lato/latin-700-italic.css';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  lang?: 'es' | 'en';
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description = 'Asociación CEPROC: desarrollo sostenible y acción comunitaria en Bolivia.',
+  lang = 'es',
+  noindex = false,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex" />}
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
