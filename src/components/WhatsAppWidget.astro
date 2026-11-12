@@ -1,0 +1,68 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/images/logo.png';
+import whatsappIcon from '../assets/icons/whatsapp.svg';
+import { getContent, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const content = getContent(lang);
+const { whatsapp } = content.widgets;
+---
+
+<div class="whatsapp-widget">
+  <button
+    class="whatsapp-button"
+    id="whatsappButton"
+    type="button"
+    aria-label={whatsapp.buttonLabel}
+    aria-controls="whatsappChat"
+    aria-expanded="false"
+  >
+    <Image src={whatsappIcon} alt="" width={40} height={40} />
+  </button>
+  <div class="whatsapp-chat" id="whatsappChat" role="dialog" aria-label={whatsapp.title}>
+    <div class="chat-header">
+      <Image src={logo} alt="" width={30} height={30} />
+      <div>
+        <span class="title">{whatsapp.title}</span><br />
+        <span class="subtitle">{whatsapp.subtitle}</span>
+      </div>
+      <button
+        class="close-chat"
+        id="closeChat"
+        type="button"
+        aria-label={whatsapp.closeLabel}
+      >×</button>
+    </div>
+    <div class="chat-body">
+      <div class="chat-bubble user">
+        <p>{whatsapp.message}</p>
+      </div>
+      <div class="chat-bubble bot">
+        <a
+          class="chat-link"
+          href={whatsapp.href}
+          target="_blank"
+          rel="noopener noreferrer"
+        >{whatsapp.action}</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .whatsapp-button {
+    border: 0;
+    padding: 0;
+  }
+
+  .close-chat {
+    background: transparent;
+    border: 0;
+    line-height: 1;
+  }
+</style>
