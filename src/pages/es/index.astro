@@ -1,20 +1,21 @@
 ---
-const title = 'CEPROC — Fase 0';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 ---
 
-<!doctype html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="robots" content="noindex" />
-    <title>{title}</title>
-  </head>
-  <body>
-    <main>
-      <h1>CEPROC</h1>
-      <p>Proyecto Astro inicializado. Fase 0 completada.</p>
-      <p>La migración visual comienza en la Fase 1.</p>
-    </main>
-  </body>
-</html>
+<BaseLayout
+  title="CEPROC | Desarrollo sostenible en Bolivia"
+  description="Asociación CEPROC: promovemos el desarrollo integral sostenible y la acción comunitaria en Bolivia."
+  noindex
+>
+  <main class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <h1 class="mb-3">CEPROC</h1>
+        <p class="lead mb-0">
+          Sitio en construcción. Próximamente encontrarás aquí la información institucional,
+          nuestras áreas de trabajo y los proyectos que desarrollamos en Bolivia.
+        </p>
+      </div>
+    </div>
+  </main>
+</BaseLayout>
