@@ -1,0 +1,19 @@
+---
+import { getContent, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const content = getContent(lang);
+---
+
+<button
+  id="scrollToTopBtn"
+  class="scroll-to-top-btn"
+  type="button"
+  aria-label={content.widgets.scrollTopLabel}
+>
+  <i class="fas fa-angle-double-up" aria-hidden="true"></i>
+</button>

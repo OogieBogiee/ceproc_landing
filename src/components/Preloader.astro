@@ -1,0 +1,22 @@
+---
+import { getContent, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const content = getContent(lang);
+---
+
+<div id="preloader" class="preloader" role="status" aria-label={content.widgets.loadingLabel}>
+  <div class="loader" aria-hidden="true"></div>
+</div>
+
+<noscript>
+  <style>
+    #preloader {
+      display: none;
+    }
+  </style>
+</noscript>

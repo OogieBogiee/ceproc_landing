@@ -1,40 +1,43 @@
 ---
-import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import logo from '../../assets/images/logo.png';
-import banner from '../../assets/images/img.jpg';
+import Navbar from '../../components/Navbar.astro';
+import Hero from '../../components/Hero.astro';
+import Footer from '../../components/Footer.astro';
+import Preloader from '../../components/Preloader.astro';
+import WhatsAppWidget from '../../components/WhatsAppWidget.astro';
+import ScrollTopButton from '../../components/ScrollTopButton.astro';
+import ScrollDownCursor from '../../components/ScrollDownCursor.astro';
+import { getContent, type Lang } from '../../i18n';
+
+const lang: Lang = 'es';
+const content = getContent(lang);
 ---
 
 <BaseLayout
-  title="CEPROC | Desarrollo sostenible en Bolivia"
-  description="Asociación CEPROC: promovemos el desarrollo integral sostenible y la acción comunitaria en Bolivia."
+  title={content.meta.title}
+  description={content.meta.description}
+  lang={lang}
   noindex
 >
-  <header class="bg-white">
-    <div class="container py-3 d-flex justify-content-center justify-content-md-start">
-      <Image src={logo} alt="Logo de CEPROC" height={72} loading="eager" />
-    </div>
-  </header>
-
+  <Preloader lang={lang} />
+  <ScrollDownCursor lang={lang} />
+  <ScrollTopButton lang={lang} />
+  <WhatsAppWidget lang={lang} />
+  <Navbar lang={lang} />
   <main>
-    <section class="container py-5">
-      <div class="row justify-content-center">
-        <div class="col-lg-8 text-center">
-          <h1 class="mb-3">CEPROC</h1>
-          <p class="lead mb-0">
-            Sitio en construcción. Próximamente encontrarás aquí la información institucional,
-            nuestras áreas de trabajo y los proyectos que desarrollamos en Bolivia.
-          </p>
-        </div>
+    <Hero lang={lang} />
+    <section id="acerca" class="py-5">
+      <div class="container py-5 text-center">
+        <h2 class="text-uppercase">{content.sections.about.title}</h2>
+        <p class="text-muted mb-0">{content.sections.about.placeholder}</p>
       </div>
     </section>
-
-    <Image
-      src={banner}
-      alt="Paisaje de campos verdes entre montañas"
-      widths={[480, 960, 1280]}
-      sizes="100vw"
-      class="w-100"
-    />
+    <section id="portafolio" class="py-5 bg-light">
+      <div class="container py-5 text-center">
+        <h2 class="text-uppercase">{content.sections.portfolio.title}</h2>
+        <p class="text-muted mb-0">{content.sections.portfolio.placeholder}</p>
+      </div>
+    </section>
   </main>
+  <Footer lang={lang} />
 </BaseLayout>
