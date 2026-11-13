@@ -592,6 +592,14 @@ html[lang="en"] .language-switcher {
   font-size: 32px;
 }
 
+.disciplinas-text,
+.portafolio-text {
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+
 .disciplinas-text {
   color: #545e4e;
   text-align: center;
