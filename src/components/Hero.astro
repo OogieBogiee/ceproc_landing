@@ -50,7 +50,10 @@ const slides = [slideOne, slideTwo, slideThree];
       <div class="caption-large">
         <span class="ml12">{content.hero.captions.title}</span>
       </div>
-      <div id="typing-container" class="caption-small">
+      <p class="visually-hidden">
+        {content.hero.captions.line1} {content.hero.captions.line2}
+      </p>
+      <div id="typing-container" class="caption-small" aria-hidden="true">
         <span id="line1">{content.hero.captions.line1}</span>
         <p>
           <span id="line2">{content.hero.captions.line2}</span>

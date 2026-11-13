@@ -36,6 +36,8 @@ const remaining = portfolio.items.slice(2);
                 href="#portafolio"
                 class="btn-menu"
                 data-filter={filter.value}
+                role="button"
+                aria-pressed={index === 0 ? 'true' : 'false'}
                 aria-label={filter.label}
                 title={filter.label}
               >
