@@ -10,11 +10,12 @@ import '@fontsource/lato/latin-400-italic.css';
 import '@fontsource/lato/latin-700-italic.css';
 import '../styles/global.css';
 import '../styles/legacy.css';
+import { getContent, type Lang } from '../i18n';
 
 interface Props {
   title: string;
   description?: string;
-  lang?: 'es' | 'en';
+  lang?: Lang;
   noindex?: boolean;
 }
 
@@ -24,6 +25,7 @@ const {
   lang = 'es',
   noindex = false,
 } = Astro.props;
+const content = getContent(lang);
 ---
 
 <!doctype html>
@@ -38,6 +40,7 @@ const {
     {noindex && <meta name="robots" content="noindex" />}
   </head>
   <body>
+    <a class="skip-link" href="#contenido">{content.accessibility.skipLink}</a>
     <slot />
     <script>
       import '../scripts/main';

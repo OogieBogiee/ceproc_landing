@@ -624,7 +624,8 @@ html[lang="en"] .language-switcher {
   text-align: justify;
 }
 
-.card:hover {
+.card:hover,
+.card:focus-within {
   transform: scale(1.05);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.16);
 }
@@ -755,8 +756,15 @@ html[lang="en"] .language-switcher {
   text-decoration: none;
 }
 
-.portafolio .menu a:hover {
+.portafolio .menu a:hover,
+.portafolio .menu a:focus-visible {
   color: #6a885a;
+}
+
+.portafolio .menu a:focus-visible,
+.box-img .btn.btn-secondary:focus-visible {
+  outline: 2px solid #f0f0f0;
+  outline-offset: 2px;
 }
 
 .portafolio .menu .active a {
@@ -765,6 +773,7 @@ html[lang="en"] .language-switcher {
 }
 
 .portafolio .box-img {
+  position: relative;
   transition: transform 0.8s ease;
   flex: 0 0 calc(52% - 50px);
 }
@@ -795,7 +804,8 @@ html[lang="en"] .language-switcher {
   pointer-events: auto;
 }
 
-.portafolio .box-img:hover .overlay {
+.portafolio .box-img:hover .overlay,
+.portafolio .box-img:focus-within .overlay {
   opacity: 1;
 }
 
@@ -805,6 +815,7 @@ html[lang="en"] .language-switcher {
 }
 
 .portafolio .box-img:hover,
+.portafolio .box-img:focus-within,
 .portafolio .box-img.active {
   transform: scale(1.1);
   outline:none;
@@ -1369,4 +1380,85 @@ footer .col-lg-6 {
   }
 }
 
+a:focus-visible,
+button:focus-visible,
+[role="button"]:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
 
+@media (min-width: 992px) {
+  #mainNav .navbar-nav li.nav-item a.nav-link:hover {
+    color: #dbe2dd;
+  }
+
+  #mainNav .navbar-nav li.nav-item a.nav-link.active,
+  #mainNav .navbar-nav li.nav-item a.nav-link.active:hover {
+    color: #dbe2dd;
+    border-bottom-color: #dbe2dd;
+  }
+}
+
+.btn:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+#scroll-down-cursor:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+}
+
+#mainNav .navbar-nav li.nav-item a.nav-link:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+  box-shadow: none;
+}
+
+.navbar-toggler:focus-visible {
+  outline: 2px solid #2f3a29;
+  outline-offset: 2px;
+}
+
+.accordion-button:focus-visible {
+  outline: 2px solid #485342;
+  outline-offset: 2px;
+}
+
+.carousel-indicators [data-bs-target]:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+@media (max-width: 380px) {
+  #scroll-down-cursor {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .portafolio .box-img,
+  .portafolio .overlay,
+  .image-wrapper img,
+  .btn-contact-principal,
+  .skip-link {
+    transition: none;
+  }
+
+  .card:hover,
+  .card:focus-within,
+  .portafolio .box-img:hover,
+  .portafolio .box-img:focus-within,
+  .image-wrapper img:hover,
+  .btn-contact-principal:hover {
+    transform: none;
+  }
+
+  #scroll-down-cursor {
+    animation: none;
+  }
+}
