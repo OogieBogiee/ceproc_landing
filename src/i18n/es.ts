@@ -3,6 +3,9 @@ export const es = {
     title: 'Asociación CEPROC - Promoviendo el desarrollo sostenible',
     description: 'CEPROC Asociación: Transformando comunidades a través del desarrollo sostenible.',
   },
+  accessibility: {
+    skipLink: 'Saltar al contenido',
+  },
   nav: {
     logoAlt: 'Logo de CEPROC',
     homeLabel: 'Ir al inicio',

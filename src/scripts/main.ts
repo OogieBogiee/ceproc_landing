@@ -99,6 +99,7 @@ onReady(() => {
     if (whatsappButton) {
       whatsappButton.style.opacity = '1';
       whatsappButton.setAttribute('aria-expanded', 'false');
+      whatsappButton.focus();
     }
     if (scrollTopButton) scrollTopButton.style.display = '';
   };
@@ -108,9 +109,24 @@ onReady(() => {
     whatsappButton.style.opacity = '0';
     whatsappButton.setAttribute('aria-expanded', 'true');
     if (scrollTopButton) scrollTopButton.style.display = 'none';
+    whatsappChat?.querySelector<HTMLAnchorElement>('.chat-link')?.focus();
   });
 
   closeChatButton?.addEventListener('click', closeWhatsApp);
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape') return;
+
+    if (collapse?.classList.contains('show')) {
+      toggler?.focus();
+      toggler?.click();
+      return;
+    }
+
+    if (whatsappChat && getComputedStyle(whatsappChat).display !== 'none') {
+      closeWhatsApp();
+    }
+  });
 
   const updateScrollDownCursor = () => {
     if (!scrollDownCursor) return;
