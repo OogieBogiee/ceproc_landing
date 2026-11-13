@@ -2,6 +2,8 @@ import 'bootstrap/js/dist/carousel';
 import 'bootstrap/js/dist/collapse';
 import AOS from 'aos';
 import ScrollSpy from 'bootstrap/js/dist/scrollspy';
+import { initLetters, initTyping } from './hero-animations';
+import { initPortfolioFilter } from './portfolio-filter';
 
 const onReady = (callback: () => void) => {
   if (document.readyState === 'loading') {
@@ -17,6 +19,9 @@ onReady(() => {
     once: true,
     disable: window.matchMedia('(prefers-reduced-motion: reduce)').matches,
   });
+
+  initTyping();
+  initPortfolioFilter();
 
   const navbar = document.querySelector<HTMLElement>('#mainNav');
   const brand = document.querySelector<HTMLElement>('.navbar-brand');
@@ -118,6 +123,7 @@ onReady(() => {
 
   const hidePreloader = () => {
     if (preloader) preloader.style.display = 'none';
+    initLetters();
     updateScrollDownCursor();
   };
 
